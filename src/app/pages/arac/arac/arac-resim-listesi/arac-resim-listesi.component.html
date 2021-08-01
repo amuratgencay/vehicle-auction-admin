@@ -1,0 +1,48 @@
+<!-- <button class="btn btn-outline-primary btn-icon" (click)="ekle()"><i class="fa fa-plus"></i></button> -->
+<!-- <arac-resim-ekle [aracId]="aracId"></arac-resim-ekle> -->
+<div class="row" *ngIf="veriGeldiMi">
+  <div class="col">
+    <button [nbSpinner]="kaydediliyor" [disabled]="kaydediliyor" nbSpinnerStatus="success" type="button"
+      class="btn btn-md btn-primary" (click)="save()">Kaydet</button>
+    <upload-file (valueChange)="resimYuklendi($event)"></upload-file>
+    <ul class="list-group" cdkDropList (cdkDropListDropped)="drop($event)">
+      <li class="list-group-item" cdkDrag *ngFor="let resim of resimler;let i =index">
+        <div class="row">
+          <div class="col-5">
+            <image-cropper *ngIf="!resim.id" outputType="file" [alignImage]="'left'" style="max-height: 200px;"
+              [autoCrop]="true" [resizeToWidth]="800" [cropperMinWidth]="100" [imageFile]="resim.beforeCropped"
+              [maintainAspectRatio]="true" [aspectRatio]="4 / 3" format="png"
+              (imageCropped)="imageCropped($event,resim)">
+            </image-cropper>
+            <image-cropper *ngIf="!resim.id" outputType="file" [alignImage]="'left'" style="max-height: 80px;"
+              [autoCrop]="true" [resizeToWidth]="300" [cropperMinWidth]="100" [imageQuality]="50" [imageFile]="resim.beforeCropped"
+              [maintainAspectRatio]="true" [aspectRatio]="4 / 3" format="png"
+              (imageCropped)="mediumCropped($event,resim)">
+            </image-cropper>
+            <image-cropper *ngIf="!resim.id" outputType="file" [alignImage]="'left'" style="max-height: 50px;"
+              [autoCrop]="true" [resizeToWidth]="100" [cropperMinWidth]="100" [imageQuality]="50" [imageFile]="resim.beforeCropped"
+              [maintainAspectRatio]="true" [aspectRatio]="4 / 3" format="png"
+              (imageCropped)="thumbnailCropped($event,resim)">
+            </image-cropper>
+            <img *ngIf="resim.id" cdkDragHandle [src]=" resim.fullUrl | safe" style="max-height: 100px;"
+              class="img-fluid">
+          </div>
+          <div class="col-1" cdkDragHandle>{{i}}</div>
+          <div class="col-5" cdkDragHandle>
+            <textarea [id]="'resim_'+i" class="form-control" [(ngModel)]="resim.resimAciklama"></textarea>
+          </div>
+          <div class="col-1"> <button class="btn btn-danger btn-icon" type="button" (click)="resimSil(resim.id,i)">
+              <i class="fa fa-trash"></i></button></div>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+
+</div>
+<div class="row">
+  <div class="col">
+    <button type="button" [nbSpinner]="kaydediliyor" [disabled]="kaydediliyor" class="btn btn-md btn-primary"
+      (click)="save()">Kaydet</button>
+  </div>
+</div>

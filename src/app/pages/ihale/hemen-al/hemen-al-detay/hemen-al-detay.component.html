@@ -1,0 +1,40 @@
+<nb-card *ngIf="model">
+  <nb-card-header>
+    <div class="row">
+      <div class="col-6">
+        <span style="position: relative;">{{model?.baslik}}</span>
+      </div>
+      <div class="col-6 text-right">
+        <button *ngIf="readOnly" nbButton ghost status="warning" (click)="guncelle()">
+          <i class="fas fa-edit"></i>
+        </button>
+        <button *ngIf="!readOnly" nbButton ghost status="warning" (click)="iptal()">
+          <i class="fas fa-ban"></i>
+        </button>
+      </div>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <form (submit)="kaydet($event)">
+      <detay-gorunumu [colDefs]="keys" *ngIf="model" [model]="model" [readOnly]="readOnly" [isCollapsed]="isCollapsed">
+      </detay-gorunumu>
+    </form>
+  </nb-card-body>
+</nb-card>
+<nb-card>
+  <nb-card-header>Detaylar</nb-card-header>
+  <nb-card-body>
+    <ngb-tabset>
+      <ngb-tab title="Araçlar">
+        <ng-template ngbTabContent>
+          <ihale-bilgisi-arac-ekle [ihaleBilgisiId]="id"></ihale-bilgisi-arac-ekle>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Teklifler">
+        <ng-template ngbTabContent>
+          <ihale-bilgisi-teklif-listesi [ihaleBilgisiId]="id"></ihale-bilgisi-teklif-listesi>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </nb-card-body>
+</nb-card>

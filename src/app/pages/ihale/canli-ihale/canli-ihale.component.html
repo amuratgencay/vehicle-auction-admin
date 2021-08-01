@@ -1,0 +1,79 @@
+<nb-card *ngIf="ihale && ihale.k">
+    <nb-card-header>
+        İHALEYE KALAN SÜRE
+    </nb-card-header>
+    <nb-card-body>
+        <div class="row">
+            <div class="col mx-1 text-center">
+                <span class="font-weight-bold d-block text-center">{{ihale.k.g}}</span>
+                <span class="font-display-exsm mt-n2  d-block font-weight-regular text-center">GÜN</span>
+            </div>
+            <div class="col mx-1 text-center">
+                <span class="font-weight-bold d-block text-center">{{ihale.k.sa}}</span>
+                <span class="font-display-exsm mt-n2  d-block font-weight-regular text-center">SAAT</span>
+            </div>
+            <div class="col mx-1 text-center">
+                <span class="font-weight-bold d-block text-center">{{ihale.k.d}}</span>
+                <span class="font-display-exsm mt-n2  d-block font-weight-regular text-center">DAKİKA</span>
+            </div>
+            <div class="col mx-1 text-center">
+                <span class="font-weight-bold d-block text-center">{{ihale.k.sn}}</span>
+                <span class="font-display-exsm mt-n2  d-block font-weight-regular text-center">SANİYE</span>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>
+<ng-container *ngFor="let arac of araclar">
+    <div class="card my-3">
+        <div class="card-header">
+            <div class="row">
+                <div class="col">
+                    {{arac.aracAracVersionModelMarkaAd | uppercase}}
+                    {{arac.aracAracVersionModelAd | uppercase}} -
+                    {{arac.aracPlaka}}
+                    {{arac.ihaleDurumAd}}
+                </div>
+                <div class="col text-right">
+                    <button class="card-link btn btn-primary btn-sm"
+                        (click)="teklifGosterKaldir(arac.id)">Teklifler</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <a [routerLink]="['/pages','arac', arac.aracId,'detay']" target="_blank">
+                        {{arac.aracAracVersionAd}}
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="d-flex w-100 border-bottom p-0 pb-1">
+                <span class="float left col-lg-6 p-2">
+                    Başlangıç Fiyatı
+                </span>
+                <span class="float left col-lg-6 p-2  text-right">
+                    <b>{{arac.baslangicFiyati}} ₺</b> <sup>Kdv Dahil</sup>
+                </span>
+            </div>
+            <div class="d-flex w-100 p-0 pb-1 pt-0" 
+                *ngIf="arac.ihaleDurum === 4">
+                <span class="float left col-lg-5 col-5 p-2 font-display-lg">
+                    Mevcut Fiyat </span>
+                <span class="float left col-lg-7 col-7 p-2 text-right" style="font-size: 22px;">
+                    <b> {{sonTeklif?.artirimSonrasiFiyat || arac.baslangicFiyati}} ₺</b> <sup>Kdv
+                        Dahil</sup>
+                </span>
+
+            </div>
+            <ihale-teklif-sayac *ngIf="arac.ihaleDurum === 4" [teklifYazisiGoster]="teklifYazisiGoster"
+                [teklifVarMi]="!!sonTeklif" [uzatmaSuresi]="ihaleAktif.uzatmaSuresi"
+                [teklifSuresi]="ihaleAktif.teklifSuresi"></ihale-teklif-sayac>
+            <ihale-arac-teklif [ihaleAracId]="arac.id" *ngIf="tekliflerAcikMi(arac.id)"></ihale-arac-teklif>
+        </div>
+    </div>
+    <!-- <div class="row">
+        <div class="col">
+            <button class="btn btn-success btn-sm  btn-block"> Araç Ekle</button>
+        </div>
+    </div> -->
+</ng-container>

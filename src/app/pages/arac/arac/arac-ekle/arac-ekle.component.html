@@ -1,0 +1,11 @@
+<nb-card *ngIf="arac">
+  <nb-card-header>
+    {{arac.aracAdi}}
+  </nb-card-header>
+  <nb-card-body>
+    <form (submit)="kaydet($event)">
+      <detay-gorunumu [colDefs]="keys" *ngIf="arac" [model]="arac" [readOnly]="false" [isCollapsed]="true">
+      </detay-gorunumu>
+    </form>
+  </nb-card-body>
+</nb-card>

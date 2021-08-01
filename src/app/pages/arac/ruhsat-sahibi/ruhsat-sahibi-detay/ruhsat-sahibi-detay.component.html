@@ -1,0 +1,40 @@
+<nb-card *ngIf="model">
+  <nb-card-header>
+    <div class="row">
+      <div class="col-6">
+        <span style="position: relative;">{{model?.ad}}</span>
+      </div>
+      <div class="col-6 text-right">
+        <button *ngIf="readOnly" nbButton ghost status="warning" (click)="guncelle()">
+          <i class="fas fa-edit"></i>
+        </button>
+        <button *ngIf="!readOnly" nbButton ghost status="warning" (click)="iptal()">
+          <i class="fas fa-ban"></i>
+        </button>
+      </div>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <form (submit)="kaydet($event)" novalidate>
+      <detay-gorunumu [colDefs]="columns" *ngIf="model" [model]="model" [readOnly]="readOnly">
+      </detay-gorunumu>
+    </form>
+  </nb-card-body>
+</nb-card>
+<nb-card *ngIf="model">
+  <nb-card-header>Detaylar</nb-card-header>
+  <nb-card-body>
+    <ngb-tabset>
+      <ngb-tab title="Yetkililer">
+        <ng-template ngbTabContent>
+          <ruhsat-sahibi-yetkilileri [ruhsatSahibiId]="model.id"></ruhsat-sahibi-yetkilileri>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Hesapları">
+        <ng-template ngbTabContent>
+          <ruhsat-sahibi-hesaplari [ruhsatSahibiId]="model.id"></ruhsat-sahibi-hesaplari>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </nb-card-body>
+</nb-card>

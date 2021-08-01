@@ -1,0 +1,13 @@
+<data-table [dataSource]="dataSource" (onToolbarPreparing)="onToolbarPreparing($event)" [allowDeleting]="true"
+  [allowAdding]="false" [allowUpdating]="false" [columns]="columns" title="Araç Ekspertiz Raporu"
+  name="aracEkspertizRaporu" (onRowUpdating)="onRowUpdating($event)">
+</data-table>
+<dx-popup [showTitle]="true" title="Ekspertiz Raporu Yükle" [dragEnabled]="false" [closeOnOutsideClick]="true"
+  [(visible)]="popupVisible">
+  <dx-file-uploader #fileUploader selectButtonText="Dosya Seç" labelText="" accept="application/pdf"
+    uploadMode="useForm">
+  </dx-file-uploader>
+  <dx-button text="Kaydet" [disabled]="progress>0" type="success" (onClick)="create(fileUploader)">
+  </dx-button>
+  <ngb-progressbar type="success" [value]="progress" [striped]="true"></ngb-progressbar>
+</dx-popup>

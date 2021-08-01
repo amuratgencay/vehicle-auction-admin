@@ -1,0 +1,113 @@
+<div class="row align-items-center">
+  <div class="col-6">
+    <nb-card [size]="'large'">
+      <nb-card-header>
+        <div class="row">
+          <div class="col-9">İhaledeki Araç Sayısı: {{ihaleAraclari?.length}}</div>
+          <div class="col-3 text-right"><button type="button" class="btn btn-md btn-secondary" (click)="sagaAktar()"><i
+                class="fa fa-arrow-right"></i></button></div>
+        </div>
+
+      </nb-card-header>
+      <nb-card-body cdkDropList #ihaledekiAraclar="cdkDropList" [cdkDropListData]="ihaleAraclari"
+        [cdkDropListConnectedTo]="[mevcutAraclar]" [cdkDropListEnterPredicate]="enterPredicate"
+        (cdkDropListDropped)="drop($event)">
+        <!-- <div style="min-height: 150px; max-height:600px; overflow-y: scroll"> -->
+        <nb-card *ngFor="let m of ihaleAraclari; let i = index" cdkDrag
+          [cdkDragDisabled]="m.ihaleDurum !== 0 || !ihaleDurum">
+          <nb-card-body>
+            <div class="form-row">
+              <div class="col">
+                <div class="row pb-2" cdkDragHandle>
+                  <div class="col-1">
+                    <b>{{i + 1}}</b>
+                  </div>
+                  <div class="col">
+                    <a><b>{{m.aracPlaka}}</b> -
+                      {{m.aracAracAdi}}</a>
+                    <span class="badge pull-right"
+                      [ngClass]="m.ihaleDurum===0?'badge-success':'badge-warning'">{{m.ihaleDurumAd}}</span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-4">
+                    <div class="dx-field">
+                      <div class="dx-field-label" cdkDragHandle>Başlangıç Fiyatı</div>
+                      <div class="dx-field-value">
+                        <dx-number-box [readOnly]="m.ihaleDurum !== 0 || !ihaleDurum" [format]="{type:'currency'}"
+                          [(ngModel)]="m.baslangicFiyati">
+                          <dxi-validation-rule type="required" message="Başlangıç Fiyatı zorunludur.">
+                          </dxi-validation-rule>
+                        </dx-number-box>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="dx-field">
+                      <div class="dx-field-label" cdkDragHandle>Hedef Fiyat</div>
+                      <div class="dx-field-value">
+                        <dx-number-box [readOnly]="m.ihaleDurum !== 0 || !ihaleDurum" [format]="{type:'currency'}"
+                          [(ngModel)]="m.hedefFiyat">
+                        </dx-number-box>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-2" *ngIf="!(m.ihaleDurum !== 0 || !ihaleDurum)">
+                    <div class="dx-field">
+                      <div class="dx-field-value">
+                        <dx-check-box [(ngModel)]="m.firsatAraciMi" (ngModelChange)="firsatAraciDegisti($event, m)"
+                          [width]="80" text="Fırsat Aracı">
+                        </dx-check-box>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-2" *ngIf="!(m.ihaleDurum !== 0 || !ihaleDurum)">
+                    <div class="dx-field">
+                      <div class="dx-field-value">
+                        <dx-check-box [(ngModel)]="m.oneCikanAracMi" (ngModelChange)="firsatAraciDegisti($event, m)"
+                          [width]="80" text="Öne Çıkan">
+                        </dx-check-box>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card> <!-- </nb-list-item> -->
+        <!-- </div> -->
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-6">
+    <nb-card [size]="'large'">
+      <nb-card-header>
+        <div class="row">
+          <div class="col-3 text-left"><button type="button" class="btn btn-md btn-secondary" (click)="solaAktar()"><i
+                class="fa fa-arrow-left"></i></button></div>
+          <div class="col-9">Gösterilen Araç Sayısı: {{filtreliAraclar.length}}</div>
+        </div>
+        <div class="form-row">
+          <div class="col">
+            <input class="form-control" placeholder="Araç Ara" [(ngModel)]="aramaText"
+              (ngModelChange)="aramaTextChange()">
+          </div>
+        </div>
+      </nb-card-header>
+      <nb-card-body cdkDropList [cdkDropListData]="filtreliAraclar" [cdkDropListConnectedTo]="[ihaledekiAraclar]"
+        (cdkDropListDropped)="drop($event)" #mevcutAraclar="cdkDropList">
+        <nb-card *ngFor="let arac of filtreliAraclar" cdkDrag cdkDragHandle>
+          <nb-card-body>
+            <div class="row">
+              <div class="col">
+                <b>{{arac.aracPlaka}}</b> - {{arac.aracAracAdi}}
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+<button type="button" class="btn btn-md btn-primary" (click)="save()">Kaydet</button>

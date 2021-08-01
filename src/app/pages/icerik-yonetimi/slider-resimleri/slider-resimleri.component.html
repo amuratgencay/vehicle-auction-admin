@@ -1,0 +1,104 @@
+<nb-card *ngIf="veriGeldiMi">
+  <nb-card-header>Slider Resimleri</nb-card-header>
+  <nb-card-body>
+    <button type="button" class="btn btn-md btn-primary" (click)="save()">Kaydet</button>
+    <upload-file (valueChange)="resimYuklendi($event)"></upload-file>
+    <ul class="list-group" cdkDropList (cdkDropListDropped)="drop($event)">
+      <li class="list-group-item" cdkDrag *ngFor="let resim of resimler;let i =index">
+        <div class="row">
+          <div class="col-3">
+            <img [src]="resim.id ? resim.fullUrl : resim.imgURL | safe" style="max-height: 100px;" class="img-fluid">
+          </div>
+          <div class="col-1">{{i}}</div>
+          <div class="col-6">
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="baslik">Başlık</label>
+                  <div class="input-group">
+
+                    <input type="text" class="form-control" [ngClass]="{ 'is-invalid': baslik.invalid }"
+                      placeholder="Başlık" aria-label="Başlık" aria-describedby="basic-addon2" [id]="'resim_'+i"
+                      required [(ngModel)]="resim.baslik" name="baslik" #baslik="ngModel">
+                    <div *ngIf="baslik?.errors?.required" class="invalid-feedback">
+                      Başlık zorunludur.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <textarea [id]="'resim_'+i" class="form-control" [(ngModel)]="resim.resimAciklama"></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" [id]="'aktifMi_'+i" [(ngModel)]="resim.aktifMi"
+                    [name]="'aktifMi_'+i" #aktifMi="ngModel">
+                  <label class="custom-control-label" [for]="'aktifMi_'+i">Aktif Mi?</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-1">
+            <button class="btn btn-danger btn-icon" type="button" (click)="resimSil(resim.id,i)">
+              <i class="fa fa-trash"></i></button>
+          </div>
+          <div class="col-1">
+            <button class="btn btn-primary btn-icon" type="button" (click)="icerik(resim.id)">
+              <i class="fa fa-edit"></i></button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </nb-card-body>
+  <nb-card-footer>
+    <button type="button" class="btn btn-md btn-primary" (click)="save()">Kaydet</button>
+  </nb-card-footer>
+</nb-card>
+
+<dx-popup *ngIf="sliderIcerik" class="popup" [showTitle]="true" title="Slider İçerik Güncelle" [dragEnabled]="false"
+  [closeOnOutsideClick]="true" [(visible)]="icerikEdit">
+  <dx-html-editor [height]="500" [(value)]="sliderIcerik.icerik" (onValueChanged)="setEditedValue($event)">
+    <dxo-toolbar>
+      <dxi-item formatName="undo"></dxi-item>
+      <dxi-item formatName="redo"></dxi-item>
+      <dxi-item formatName="separator"></dxi-item>
+      <dxi-item formatName="size" [formatValues]="['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt']">
+      </dxi-item>
+      <dxi-item formatName="font"
+        [formatValues]="['Arial', 'Courier New', 'Georgia', 'Impact', 'Lucida Console', 'Tahoma', 'Times New Roman', 'Verdana']">
+      </dxi-item>
+      <dxi-item formatName="separator"></dxi-item>
+      <dxi-item formatName="bold"></dxi-item>
+      <dxi-item formatName="italic"></dxi-item>
+      <dxi-item formatName="strike"></dxi-item>
+      <dxi-item formatName="underline"></dxi-item>
+      <dxi-item formatName="separator"></dxi-item>
+      <dxi-item formatName="alignLeft"></dxi-item>
+      <dxi-item formatName="alignCenter"></dxi-item>
+      <dxi-item formatName="alignRight"></dxi-item>
+      <dxi-item formatName="alignJustify"></dxi-item>
+      <dxi-item formatName="separator"></dxi-item>
+      <dxi-item formatName="header" [formatValues]="[false, 1, 2, 3, 4, 5]"></dxi-item>
+      <dxi-item formatName="separator"></dxi-item>
+      <dxi-item formatName="orderedList"></dxi-item>
+      <dxi-item formatName="bulletList"></dxi-item>
+      <dxi-item formatName="separator"></dxi-item>
+      <dxi-item formatName="color"></dxi-item>
+      <dxi-item formatName="background"></dxi-item>
+      <dxi-item formatName="separator"></dxi-item>
+      <dxi-item formatName="link"></dxi-item>
+      <dxi-item formatName="image"></dxi-item>
+      <dxi-item formatName="separator"></dxi-item>
+      <dxi-item formatName="clear"></dxi-item>
+      <dxi-item formatName="codeBlock"></dxi-item>
+      <dxi-item formatName="blockquote"></dxi-item>
+    </dxo-toolbar>
+    <dxo-media-resizing [enabled]=true>
+    </dxo-media-resizing>
+  </dx-html-editor>
+  <button type="button" class="btn btn-md btn-primary" (click)="icerikKaydet()">Kaydet</button>
+</dx-popup>

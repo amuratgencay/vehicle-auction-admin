@@ -1,0 +1,36 @@
+<div class="header-container">
+  <div class="logo-container">
+    <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
+      <nb-icon icon="menu-2-outline"></nb-icon>
+    </a>
+    <a class="logo" href="#" (click)="navigateHome()">
+      <img rel="Avec Logo" class="avec-logo m-auto" src="assets/images/avec_ikinciel_logo.svg" />
+    </a>
+  </div>
+  <nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">
+    <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
+  </nb-select>
+  <nb-actions size="small">
+    <nb-action (click)="sistemiKapat(siteGuncelleniyor)" [badgeText]="siteGuncelleniyor ? 'K':'A'"
+      badgePosition="top right" [badgeStatus]="siteGuncelleniyor ? 'danger' : 'success'"
+      [ngbTooltip]="'Sistemi Kapatmak İçin Basınız'" [icon]="{pack:'font-awesome-5', icon:'power-off'}"></nb-action>
+  </nb-actions>
+  <!-- <ngx-layout-direction-switcher class="direction-switcher"></ngx-layout-direction-switcher> -->
+</div>
+
+<div class="header-container">
+  <nb-actions size="small">
+
+   
+    <nb-action class="control-item">
+      <nb-search type="rotate-layout"></nb-search>
+    </nb-action>
+    <nb-action class="control-item" icon="email-outline"></nb-action>
+    <nb-action class="control-item" icon="bell-outline"></nb-action>
+    <nb-action class="user-action">
+      <nb-user [nbContextMenu]="userMenu" [onlyPicture]="userPictureOnly" [name]="user?.fullName"
+        [picture]="user?.picture">
+      </nb-user>
+    </nb-action>
+  </nb-actions>
+</div>

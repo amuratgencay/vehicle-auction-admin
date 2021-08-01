@@ -1,0 +1,22 @@
+<dx-data-grid id="gridContainer" [dataSource]="dataSource" [allowColumnReordering]="true" [allowColumnResizing]="true"
+  [columnAutoWidth]="true" [allowColumnReordering]="true" [showBorders]="true" [allowColumnResizing]="true" [columnAutoWidth]="true">
+  <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+  <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+  <dxo-filter-row [visible]="true"></dxo-filter-row>
+  <dxo-paging [enabled]="true"></dxo-paging>
+  <dxo-state-storing [enabled]="true" type="localStorage" storageKey="uyeDurumuGrid"></dxo-state-storing>
+  <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"></dxo-pager>
+  <dxo-group-panel [visible]="true"></dxo-group-panel>
+  <dxo-grouping [autoExpandAll]="true"></dxo-grouping>
+  <dxo-search-panel [visible]="true" [width]="240" placeholder="Ara"></dxo-search-panel>
+  <dxi-column dataField="uyeSayisi" caption="Üye Sayısı" dataType="number">
+  </dxi-column>
+  <dxi-column dataField="uyeTipi" caption="Üye Tipi" dataType="number">
+  </dxi-column>
+  <dxi-column dataField="ilkGirisTarihi" caption="İlk Giriş Tarihi">
+  </dxi-column>
+  <dxi-column dataField="bakiye" caption="Bakiye" dataType="number">
+  </dxi-column>
+  <dxi-column dataField="tekilUye" caption="Tekil Üye" dataType="number">
+  </dxi-column>
+</dx-data-grid>

@@ -1,0 +1,64 @@
+<nb-card *ngIf="arac">
+  <nb-card-header>
+    <div class="row">
+      <div class="col-6">
+        <span>{{arac?.aracAdi}}</span>
+        <nb-badge class="ml-2" [text]="'Hasar Puanı: ' + arac.ekspertizPuani" status="warning" position="top">
+        </nb-badge>
+      </div>
+      <div class="col-6 text-right">
+        <button [disabled]="arac?.kazanilanAracDurumuId === 7" nbButton ghost status="warning" (click)="guncelle(arac)">
+          <i class="fas fa-edit"></i>
+        </button>
+      </div>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <detay-gorunumu [colDefs]="keys" *ngIf="arac" [model]="arac" [readOnly]="true" [isCollapsed]="isCollapsed">
+    </detay-gorunumu>
+  </nb-card-body>
+</nb-card>
+
+<nb-card>
+  <nb-card-header></nb-card-header>
+  <nb-card-body>
+    <ngb-tabset justify="fill">
+      <ngb-tab title="Mevcut Durum">
+        <ng-template ngbTabContent>
+          <arac-mevcut-durum [aracId]="id"></arac-mevcut-durum>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Ekspertiz Geçmişi">
+        <ng-template ngbTabContent>
+          <arac-ekspertiz-gecmisi (puanDegisti)="puanDegisti($event)" [aracId]="id"></arac-ekspertiz-gecmisi>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Ekspertiz Raporu">
+        <ng-template ngbTabContent>
+          <arac-ekspertiz-raporu [aracId]="id"></arac-ekspertiz-raporu>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="İhale Geçmişi">
+        <ng-template ngbTabContent>
+          <arac-ihale-gecmisi [aracId]="id"></arac-ihale-gecmisi>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Donanımlar">
+        <ng-template ngbTabContent>
+          <arac-donanim [aracId]="id"></arac-donanim>
+
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Resimler">
+        <ng-template ngbTabContent>
+          <arac-resim-listesi [aracId]="id"></arac-resim-listesi>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Teklifler">
+        <ng-template ngbTabContent>
+          <arac-teklif-listesi [aracId]="id"></arac-teklif-listesi>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </nb-card-body>
+</nb-card>

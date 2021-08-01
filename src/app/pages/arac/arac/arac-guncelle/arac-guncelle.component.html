@@ -1,0 +1,13 @@
+<nb-card>
+  <nb-card-header>
+    {{arac?.aracAdi}}
+  </nb-card-header>
+  <nb-card-body>
+    <form (submit)="kaydet()">
+      <detay-gorunumu #detayGorunumu [colDefs]="keys" [model]="arac" [readOnly]="false" [isCollapsed]="true">
+      </detay-gorunumu>
+    </form>
+  </nb-card-body>
+</nb-card>
+<!-- <button type="button" class="btn btn-md btn-primary" [disabled]="yeniForm.invalid"
+  (click)="yeniForm.valid && kaydet()">Kaydet</button> -->

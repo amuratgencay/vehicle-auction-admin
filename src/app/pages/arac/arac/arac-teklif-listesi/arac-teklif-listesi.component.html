@@ -1,0 +1,27 @@
+<!-- <dx-data-grid id="gridContainer" [repaintChangesOnly]="true" [highlightChanges]="true" [dataSource]="dataSource"
+  [allowColumnReordering]="true" [showBorders]="true" [allowColumnResizing]="true" [columnAutoWidth]="true">
+  <dxo-paging [enabled]="true"></dxo-paging>
+  <dxo-state-storing [enabled]="true" type="localStorage" storageKey="aracParcaListesiGrid"></dxo-state-storing>
+  <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"></dxo-pager>
+  <dxo-group-panel [visible]="true"></dxo-group-panel>
+  <dxo-grouping [autoExpandAll]="true"></dxo-grouping>
+  <dxo-search-panel [visible]="true" [width]="240" placeholder="Ara"></dxo-search-panel>
+  <dxi-column [visibleIndex]="1" dataField="uyeBilgiTamAd" caption="Üye" cellTemplate="cellTemplate">
+  </dxi-column>
+  <div *dxTemplate="let data of 'cellTemplate'">
+    <a [routerLink]="['/pages', 'uye-bilgi','uye',data.data.uyeBilgiId, 'detay']" routerLinkActive="active">
+      {{data.value}}
+    </a>
+  </div>
+  <dxi-column [visibleIndex]="2" dataField="artirimMiktari" dataType="number" caption="Artırım Miktarı">
+  </dxi-column>
+  <dxi-column [visibleIndex]="3" dataField="artirimSonrasiFiyat" dataType="number" caption="Artırım Sonrası Fiyat">
+  </dxi-column>
+  <dxi-column [visibleIndex]="4" dataField="teklifZamani" dataType="datetime" format="dd.MM.yyyy HH:mm:ss"  caption="Teklif Zamanı">
+  </dxi-column>
+  <dxi-column [visibleIndex]="4" dataField="durum" dataType="boolean" caption="Durum">
+  </dxi-column>
+</dx-data-grid> -->
+<data-table [dataSource]="dataSource" [editMode]="'popup'" [allowUpdating]="false" [allowAdding]="false"
+  [allowDeleting]="false" [columns]="columns" title="Teklifler" name="teklifler" (onRowUpdating)="onRowUpdating($event)">
+</data-table>

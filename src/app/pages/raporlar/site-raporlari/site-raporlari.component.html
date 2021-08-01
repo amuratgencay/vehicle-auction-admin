@@ -1,0 +1,22 @@
+<dx-data-grid id="gridContainer" [dataSource]="data" [allowColumnReordering]="true" [allowColumnResizing]="true"
+  [columnAutoWidth]="true" [allowColumnReordering]="true" [showBorders]="true" [allowColumnResizing]="true" [columnAutoWidth]="true">
+  <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+  <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+  <dxo-filter-row [visible]="true"></dxo-filter-row>
+  <dxo-group-panel [visible]="true"></dxo-group-panel>
+  <dxo-grouping [autoExpandAll]="true"></dxo-grouping>
+  <dxo-paging [enabled]="true"></dxo-paging>
+  <dxo-state-storing [enabled]="true" type="localStorage" storageKey="siteRaporlariGrid"></dxo-state-storing>
+  <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"></dxo-pager>
+  <dxo-search-panel [visible]="true" [width]="240" placeholder="Ara"></dxo-search-panel>
+  <dxi-column dataField="kayitTarihi" caption="Kayıt Tarihi" dataType="number">
+  </dxi-column>
+  <dxi-column dataField="ios" caption="iOS" dataType="number">
+  </dxi-column>
+  <dxi-column dataField="android" caption="Android">
+  </dxi-column>
+  <dxi-column dataField="web" caption="Web" dataType="number">
+  </dxi-column>
+  <dxi-column dataField="toplam" caption="Toplam" dataType="number">
+  </dxi-column>
+</dx-data-grid>

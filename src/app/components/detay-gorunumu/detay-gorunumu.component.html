@@ -1,0 +1,54 @@
+<dx-form #form [(formData)]="model" [readOnly]="readOnly" [showColonAfterLabel]="true" [labelLocation]="'left'"
+  [minColWidth]="300" [colCount]="1">
+  <ng-container *ngFor="let group of colDefs | groupBy:'groupKey'">
+    <dxi-item itemType="group" [caption]="group.key!=='undefined'?group.key:''" [colCount]="'auto'">
+      <ng-container *ngFor="let col of group.value">
+        <dxi-item #dynamicitems [dataField]="col.key" [label]="{text:col.name}" [colSpan]="col.colSpan"
+          [visible]="col.visible" [validationRules]="col.validators" [editorType]="getEditorType(col.type)"
+          [editorOptions]="col.editorOptions">
+        </dxi-item>
+      </ng-container>
+    </dxi-item>
+  </ng-container>
+  <dxi-item *ngIf="!readOnly" itemType="button" horizontalAlignment="left" [buttonOptions]="buttonOptions">
+  </dxi-item>
+  <!-- <dxi-item *ngIf="!readOnly" itemType="button" horizontalAlignment="left" [buttonOptions]="iptalButtonOptions">
+  </dxi-item> -->
+</dx-form>
+
+
+<!-- 
+
+<div class="container-fluid" [ngbCollapse]="isCollapsed">
+  <div class="row">
+    <div class="col-6" *ngFor="let col of colDefs">
+      <div class="row">
+        <div class="col-3">
+          <strong>{{col.name}}</strong>
+        </div>
+
+        <div class="col-9" [ngSwitch]="col.type">
+          <span *ngSwitchCase="'boolean'" [class]=" model[col.key] ? 'badge badge-success':'badge badge-danger'">
+            {{ col.values ? col.values[model[col.key]]  : model[col.key] ? 'Var' : 'Yok'}}
+          </span>
+          <span *ngSwitchCase="'date'">
+            {{model[col.key] | date:col.format}}
+          </span>
+          <span *ngSwitchCase="'number'">
+            {{model[col.key] | number:col.format:'tr'}}
+          </span>
+          <span *ngSwitchCase="'html'" [innerHtml]="model[col.key]">
+          </span>
+
+          <span *ngSwitchCase="'currency'">
+            {{model[col.key] | currency:'TRY':'symbol':'':'tr'}}
+          </span>
+          <span *ngSwitchDefault>
+            {{model[col.key]}}
+          </span>
+        </div>
+        <hr>
+      </div>
+    </div>
+  </div>
+</div> -->

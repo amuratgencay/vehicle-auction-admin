@@ -1,0 +1,6 @@
+<a *ngIf="id"  [routerLink]="['/pages', 'uye-bilgi','uye', id, 'detay']" routerLinkActive="active">
+  {{value}}
+</a>
+<span *ngIf="!id">
+  {{value}}
+</span>

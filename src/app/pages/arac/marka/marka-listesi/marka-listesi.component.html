@@ -1,0 +1,6 @@
+<!-- <data-table [settings]="settings" (edit)="edit($event)" (create)="create()" (refresh)="refresh($event)"
+    (delete)="delete($event)" [data]="data">
+</data-table> -->
+<data-table [dataSource]="dataSource" [columns]="columns" name="markalar" (onRowUpdating)="onRowUpdating($event)">
+
+</data-table>

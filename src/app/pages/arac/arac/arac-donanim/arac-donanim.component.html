@@ -1,0 +1,19 @@
+<table class="table table-bordered table-condensed" *ngIf="sonucGeldi">
+  <thead>
+    <tr>
+      <th style="width: 50%">Donanım</th>
+      <th>Var/Yok</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let donanim of donanimlar">
+      <td style="width: 50%">{{donanim.ad}}</td>
+      <td>
+        <!-- <p-inputSwitch [ngModel]="donanimaGoreGetir(donanim)" (onChange)="durumChange($event, donanim)">
+        </p-inputSwitch> -->
+        <dx-switch [value]="donanimaGoreGetir(donanim)" (valueChange)="durumChange($event, donanim)">
+        </dx-switch>
+      </td>
+    </tr>
+  </tbody>
+</table>

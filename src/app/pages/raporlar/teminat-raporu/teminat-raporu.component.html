@@ -1,0 +1,26 @@
+<dx-data-grid id="gridContainer" [dataSource]="data" [allowColumnReordering]="true" [allowColumnResizing]="true"
+  [columnAutoWidth]="true" [allowColumnReordering]="true" [showBorders]="true" [allowColumnResizing]="true" [columnAutoWidth]="true">
+  <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+  <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+  <dxo-filter-row [visible]="true"></dxo-filter-row>
+  <dxo-paging [enabled]="true"></dxo-paging>
+  <dxo-state-storing [enabled]="true" type="localStorage" storageKey="teminatRaporuGrid"></dxo-state-storing>
+  <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"></dxo-pager>
+  <dxo-group-panel [visible]="true"></dxo-group-panel>
+  <dxo-grouping [autoExpandAll]="true"></dxo-grouping>
+  <dxo-search-panel [visible]="true" [width]="240" placeholder="Ara"></dxo-search-panel>
+  <dxi-column dataField="toplamDepozito" caption="Toplam Depozito" dataType="number">
+  </dxi-column>
+  <dxi-column dataField="toplamCekilen" caption="Toplam Çekilen" dataType="number">
+  </dxi-column>
+  <dxi-column dataField="toplamIade" caption="Toplam İade">
+  </dxi-column>
+  <dxi-column dataField="toplamSatis" caption="Toplam Satış" dataType="number">
+  </dxi-column>
+  <dxi-column dataField="ad" caption="Ad">
+  </dxi-column>
+  <dxi-column dataField="soyad" caption="Soyad">
+  </dxi-column>
+  <dxi-column dataField="teminatTarihi" caption="Teminat Tarihi">
+  </dxi-column>
+</dx-data-grid>

@@ -1,0 +1,32 @@
+<table class="table table-bordered table-condensed" *ngIf="sonucGeldi">
+  <thead>
+    <tr>
+      <th>Parça</th>
+      <th>Boyalı</th>
+      <th>Değişmiş</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let parca of parcalar">
+      <td>{{parca.ad}}</td>
+      <td>
+        <dx-switch [disabled]="!parcayaGoreGetir(parca)?.parcaBoyali && parcayaGoreGetir(parca)?.parcaDegismis"
+          [value]="parcayaGoreGetir(parca)?.parcaBoyali" (valueChange)="durumChange($event, parca,'parcaBoyali')">
+        </dx-switch>
+        <!-- <p-inputSwitch [ngModel]="parcayaGoreGetir(parca)?.parcaBoyali"
+          [disabled]="!parcayaGoreGetir(parca)?.parcaBoyali && parcayaGoreGetir(parca)?.parcaDegismis"
+          (onChange)="durumChange($event, parca,'parcaBoyali')">
+        </p-inputSwitch> -->
+      </td>
+      <td>
+        <dx-switch [disabled]="!parcayaGoreGetir(parca)?.parcaDegismis && parcayaGoreGetir(parca)?.parcaBoyali"
+          [value]="parcayaGoreGetir(parca)?.parcaDegismis" (valueChange)="durumChange($event, parca,'parcaDegismis')">
+        </dx-switch>
+        <!-- <p-inputSwitch [ngModel]="parcayaGoreGetir(parca)?.parcaDegismis"
+          [disabled]="!parcayaGoreGetir(parca)?.parcaDegismis && parcayaGoreGetir(parca)?.parcaBoyali"
+          (onChange)="durumChange($event, parca,'parcaDegismis')">
+        </p-inputSwitch> -->
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,56 @@
+<form (ngSubmit)="login()" #form="ngForm" aria-labelledby="title">
+  <div class="dx-fieldset">
+    <div class="dx-fieldset-header">Giriş</div>
+    <div class="dx-field">
+      <div class="dx-field-label">Eposta</div>
+      <div class="dx-field-value">
+        <dx-text-box [(value)]="user.eposta" [showClearButton]="true">
+          <dx-validator>
+            <dxi-validation-rule type="required"  message="Eposta zorunludur"></dxi-validation-rule>
+            <dxi-validation-rule type="email"  message="Eposta geçersiz"></dxi-validation-rule>
+          </dx-validator>
+        </dx-text-box>
+      </div>
+    </div>
+    <div class="dx-field">
+      <div class="dx-field-label">Şifre</div>
+      <div class="dx-field-value">
+        <dx-text-box mode="password" [(value)]="user.sifre" [showClearButton]="true">
+          <dx-validator>
+            <dxi-validation-rule type="required" message="Şifre zorunludur"></dxi-validation-rule>
+          </dx-validator>
+        </dx-text-box>
+      </div>
+    </div>
+  </div>
+  <div class="dx-fieldset">
+    <dx-validation-summary id="summary"></dx-validation-summary>
+    <dx-button id="button" text="Giriş" type="success" [useSubmitBehavior]="true">
+    </dx-button>
+  </div>
+</form>
+<div class="form-control-group accept-group">
+  <a class="forgot-password" [routerLink]="['/auth','request-password']">Şifremi Unuttum</a>
+</div>
+
+<!-- <section *ngIf="socialLinks && socialLinks.length > 0" class="links" aria-label="Social sign in">
+  or enter with:
+  <div class="socials">
+    <ng-container *ngFor="let socialLink of socialLinks">
+      <a *ngIf="socialLink.link"
+         [routerLink]="socialLink.link"
+         [attr.target]="socialLink.target"
+         [attr.class]="socialLink.icon"
+         [class.with-icon]="socialLink.icon">{{ socialLink.title }}</a>
+      <a *ngIf="socialLink.url"
+         [attr.href]="socialLink.url"
+         [attr.target]="socialLink.target"
+         [attr.class]="socialLink.icon"
+         [class.with-icon]="socialLink.icon">{{ socialLink.title }}</a>
+    </ng-container>
+  </div>
+</section> -->
+
+<!-- <section class="another-action" aria-label="Register">
+  Don't have an account? <a class="text-link" routerLink="../register">Register</a>
+</section> -->

@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col">
+    <button type="button" class="btn btn-primary btn-sm" (click)="sablonIndir()">Şablon İndir</button>
+  </div>
+</div>
+<div class="row" *ngIf="!topluAracYukleFile">
+
+  <div class="col">
+    <div class="uploadfilecontainer" (click)="fileInput.click()" dragDrop (onFileDropped)="dosyaYuklendi($event)">
+      <input hidden type="file" #fileInput (change)="dosyaYuklendi($event.target.files)">
+      Dosyayı buraya sürükleyin veya tıklayın.
+    </div>
+
+  </div>
+</div>
+<div class="row" *ngIf="topluAracYukleFile">
+  <div class="col-3">
+    <div>
+      {{topluAracYukleFile.name}}
+      <button type="button" [disabled]="yukleniyor" class="btn btn-danger btn-sm" (click)="dosyaSil($event)"><i
+          class="fa fa-trash" aria-hidden="true"></i></button>
+
+    </div>
+  </div>
+  <div class="col-9">
+    <ngb-progressbar [value]="topuYukleProgress" [striped]="true" [animated]="yukleniyor"></ngb-progressbar>
+  </div>
+</div>
+<div class="row" *ngIf="topluAracYukleFile">
+  <div class="col">
+    <button type="button" [disabled]="yukleniyor" class="btn btn-primary" (click)="yukle($event)">Kaydet</button>
+  </div>
+</div>
+<dx-data-grid id="gridContainer" [dataSource]="topluYukleSonucu" [allowColumnReordering]="true"
+  [allowColumnResizing]="true" [columnAutoWidth]="true" [allowColumnReordering]="true" [showBorders]="true"
+  [allowColumnResizing]="true" [columnAutoWidth]="true">
+  <dxo-export [enabled]="true" fileName="Araclar" [allowExportSelectedData]="true"></dxo-export>
+  <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+  <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+  <dxo-filter-row [visible]="true"></dxo-filter-row>
+  <dxo-paging [enabled]="true"></dxo-paging>
+  <dxo-state-storing [enabled]="true" type="localStorage" storageKey="araclarGrid"></dxo-state-storing>
+  <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"></dxo-pager>
+  <dxo-editing mode="popup" [allowAdding]="false" [allowUpdating]="false" [allowDeleting]="false">
+  </dxo-editing>
+  <dxo-group-panel [visible]="true"></dxo-group-panel>
+  <dxo-grouping [autoExpandAll]="true"></dxo-grouping>
+  <dxo-search-panel [visible]="true" [width]="240" placeholder="Ara"></dxo-search-panel>
+  <dxi-column dataField="plaka" [fixed]="true" caption="Plaka" cellTemplate="cellTemplate">
+    <dxi-validation-rule type="required"></dxi-validation-rule>
+  </dxi-column>
+  <div *dxTemplate="let data of 'cellTemplate'">
+    <!-- <a [routerLink]="['/pages',  'arac',data.data.id,'detay']" routerLinkActive="active"> -->
+    {{data.value}}
+    <!-- </a> -->
+  </div>
+  <dxi-column dataField="hata" caption="Hata">
+    <dxi-validation-rule type="required"></dxi-validation-rule>
+  </dxi-column>
+</dx-data-grid>

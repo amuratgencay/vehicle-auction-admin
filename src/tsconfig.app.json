@@ -1,0 +1,48 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/app",
+    "baseUrl": "./",
+    "paths": {
+      "@angular/*": [
+        "../node_modules/@angular/*"
+      ],
+      "@nebular/*": [
+        "../node_modules/@nebular/*"
+      ],
+      "@ikinciel/core/*": [
+        "app/@core/*"
+      ],
+      "@ikinciel/theme/*": [
+        "app/@theme/*"
+      ],
+      "@ikinciel/interceptors/*": [
+        "app/interceptors/*"
+      ],
+      "@ikinciel/security/*": [
+        "app/security/*"
+      ],
+      "@ikinciel/arac/*": [
+        "app/pages/arac/*"
+      ],
+      "@ikinciel/ihale/*": [
+        "app/pages/ihale/*"
+      ],
+      "@ikinciel/tanimlamalar/*": [
+        "app/pages/tanimlamalar/*"
+      ],
+      "jszip": [
+        "node_modules/jszip/dist/jszip.min.js"
+      ],
+    }
+  },
+  "files": [
+    "main.ts",
+    "polyfills.ts"
+  ],
+  "include": [
+    "../src/*.ts",
+    "../src/**/*.d.ts",
+    "../node_modules/@nebular/**/*.ts"
+  ]
+}

@@ -1,0 +1,11 @@
+<div class="uploadfilecontainer" (click)="fileInput.click()" dragDrop (onFileDropped)="uploadFile($event)">
+  <input hidden type="file" [multiple]="multiple" #fileInput (change)="uploadFile($event.target.files)">
+  Dosyaları buraya sürükleyin veya tıklayın.
+</div>
+<!-- <div class="files-list" *ngFor="let file of files;let i=index">
+  <img [src]="file.imgURL | safe" style="width:80px;">
+  <p>{{ file.name }}</p>
+  <button class="delete-file" (click)="deleteAttachment(i)">
+    <i class="fa fa-trash" aria-hidden="true"></i>
+  </button>
+</div> -->

@@ -1,0 +1,48 @@
+<nb-card>
+  <nb-card-header>
+    Kullanıcı Rolleri
+  </nb-card-header>
+  <nb-card-body>
+    <dx-data-grid id="gridContainer" [dataSource]="dataSource" (onRowUpdating)="onRowUpdating($event)"
+      (onInitNewRow)="onInitNewRow($event)" [allowColumnReordering]="true" [allowColumnResizing]="true"
+      [columnAutoWidth]="true" [allowColumnReordering]="true" [showBorders]="true" [allowColumnResizing]="true"
+      [columnAutoWidth]="true">
+      <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+      <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+      <dxo-filter-row [visible]="true"></dxo-filter-row>
+      <dxo-group-panel [visible]="true"></dxo-group-panel>
+      <dxo-grouping [autoExpandAll]="true"></dxo-grouping>
+      <dxo-paging [enabled]="true"></dxo-paging>
+      <dxo-state-storing [enabled]="true" type="localStorage" storageKey="rolListesiGrid"></dxo-state-storing>
+      <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"></dxo-pager>
+      <dxo-editing mode="popup" [allowAdding]="true" [allowUpdating]="false" [allowDeleting]="true">
+      </dxo-editing>
+      <dxo-search-panel [visible]="true" [width]="240" placeholder="Ara"></dxo-search-panel>
+      <div *dxTemplate="let data of 'cellTemplate'">
+        <a [routerLink]="['/pages', 'sistem-yonetimi','kullanici', data.data.id, 'detay']" routerLinkActive="active">
+          {{data.value}}
+        </a>
+      </div>
+      <dxi-column dataField="kullaniciId" [visible]="!!rolId" caption="Kullanıcı">
+        <dxo-lookup [dataSource]="kullanicilar" displayExpr="tamAd" valueExpr="id">
+        </dxo-lookup>
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+      </dxi-column>
+      <!-- <div *dxTemplate="let data of 'cellTemplate'">
+    <a [routerLink]="['/pages', 'sistem-yonetimi','kullanici', data.data.tamAd, 'detay']" routerLinkActive="active">
+      {{data.tamAd}}
+    </a>
+  </div> -->
+      <dxi-column dataField="rolId" [visible]="!!kullaniciId" caption="Rol">
+        <dxo-lookup [dataSource]="roller" displayExpr="ad" valueExpr="id">
+        </dxo-lookup>
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+      </dxi-column>
+      <!-- <div *dxTemplate="let data of 'cellTemplate2'">
+    <a [routerLink]="['/pages', 'sistem-yonetimi','rol', data.data.id, 'detay']" routerLinkActive="active">
+      {{data.value}}
+    </a>
+  </div> -->
+    </dx-data-grid>
+  </nb-card-body>
+</nb-card>

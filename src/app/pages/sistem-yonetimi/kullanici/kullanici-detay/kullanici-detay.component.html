@@ -1,0 +1,26 @@
+<nb-card *ngIf="model">
+  <nb-card-header>
+    <div class="row">
+      <div class="col-6">
+        <span style="position: relative;">{{model?.tamAd}}</span>
+      </div>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <detay-gorunumu [colDefs]="keys" *ngIf="model" [model]="model" [readOnly]="true" [isCollapsed]="isCollapsed">
+    </detay-gorunumu>
+  </nb-card-body>
+</nb-card>
+
+<nb-card>
+  <nb-card-header></nb-card-header>
+  <nb-card-body>
+    <ngb-tabset justify="fill">
+      <ngb-tab title="Roller">
+        <ng-template ngbTabContent>
+          <rol-kullanici-listesi [kullaniciId]="id"></rol-kullanici-listesi>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </nb-card-body>
+</nb-card>

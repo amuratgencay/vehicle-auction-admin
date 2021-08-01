@@ -1,0 +1,53 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@ikinciel/core/*": [
+        "app/@core/*"
+      ],
+      "@ikinciel/theme/*": [
+        "app/@theme/*"
+      ],
+      "@ikinciel/interceptors/*": [
+        "app/interceptors/*"
+      ],
+      "@ikinciel/security/*": [
+        "app/security/*"
+      ],
+      "@ikinciel/arac/*": [
+        "app/pages/arac/*"
+      ],
+      "@ikinciel/ihale/*": [
+        "app/pages/ihale/*"
+      ],
+      "@ikinciel/tanimlamalar/*": [
+        "app/pages/tanimlamalar/*"
+      ],
+      "jszip": [
+        "node_modules/jszip/dist/jszip.min.js"
+      ],
+    },
+    "importHelpers": true,
+    "module": "esnext",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "plugins": [
+      {
+        "name": "tslint-language-service"
+      }
+    ]
+  }
+}

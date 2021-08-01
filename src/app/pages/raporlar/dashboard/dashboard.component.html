@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col">
+    <nb-card>
+      <nb-card-header>Markaya Göre Araçlar</nb-card-header>
+      <nb-card-body>
+        <dx-pie-chart id="pie" title="Markaya Göre Araçlar" palette="bright" [dataSource]="dataSource2">
+          <dxi-series argumentField="markaAd" valueField="sayi">
+            <dxo-label [visible]="true">
+              <dxo-connector [visible]="true" [width]="1"></dxo-connector>
+            </dxo-label>
+          </dxi-series>
+          <dxo-export [enabled]="true"></dxo-export>
+        </dx-pie-chart>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col">
+    <nb-card>
+      <nb-card-header>Durumuna Göre Araçlar</nb-card-header>
+      <nb-card-body>
+        <dx-pie-chart id="pie" title="Durumuna Göre Araçlar" palette="bright" [dataSource]="dataSource1">
+          <dxi-series argumentField="durumAd" valueField="sayi">
+            <dxo-label [visible]="true">
+              <dxo-connector [visible]="true" [width]="1"></dxo-connector>
+            </dxo-label>
+          </dxi-series>
+          <dxo-export [enabled]="true"></dxo-export>
+        </dx-pie-chart>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

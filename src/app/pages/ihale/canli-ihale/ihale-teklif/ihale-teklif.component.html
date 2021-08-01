@@ -1,0 +1,77 @@
+<div [hidden]="!(ihaleArac && !ihaleSonaErdiMi)"
+    class="card-body border pt-2 pb-0 font-weight-medium dark-gray-text ml-lg-2 pb-0">
+    <div *ngIf="!kesinSatis || !sonTeklif" class="d-flex w-100 border-bottom p-0 pb-1">
+        <span class="float left col-lg-6 p-2">
+            Başlangıç Fiyatı
+        </span>
+        <span class="float left col-lg-6 p-2  text-right">
+            <b>{{ihaleArac.baslangicFiyati}} ₺</b> <sup>Kdv Dahil</sup>
+        </span>
+    </div>
+    <div *ngIf="kesinSatis && sonTeklif" class="text-center alert alert-success pulsate-bck">Satış
+        Barajı Geçildi!</div>
+    <div class="d-flex w-100 p-0 pb-1 pt-0" [ngClass]="kesinSatis ? 'green-text' : 'orange-text'"
+        *ngIf="ihaleArac.ihaleDurum === 4">
+        <span class="float left col-lg-5 col-5 p-2 font-display-lg">
+            Mevcut Fiyat </span>
+        <span class="float left col-lg-7 col-7 p-2 text-right" style="font-size: 22px;">
+            <b> {{sonTeklif?.artirimSonrasiFiyat || ihaleArac.baslangicFiyati}} ₺</b> <sup>Kdv
+                Dahil</sup>
+        </span>
+
+    </div>
+    
+    <div class="row mt-2 no-gutters" *ngIf="ihaleArac.ihaleDurum === 4">
+        <app-ihale-teklif-sayac [teklifYazisiGoster]="teklifYazisiGoster" [teklifVarMi]="!!sonTeklif"
+            [uzatmaSuresi]="ihale.uzatmaSuresi" [teklifSuresi]="ihale.teklifSuresi"></app-ihale-teklif-sayac>
+        <div class="col-sm-8 col-8 text-right">
+            <div *ngIf="sonTeklifGuncelUyedeMi" class="w-100 px-0 mx-0 pt-5 text-center green-text bounce-in-fwd">
+                En Yüksek Teklif Sizde!
+            </div>
+            <div *ngIf="!sonTeklifGuncelUyedeMi" class="w-100 px-0 mx-0 pt-4 text-center  orange-text">
+                <ng-container *ngIf="sonTeklif"> Son Teklif<br /> Farklı Bir Üye Tarafından Verildi!</ng-container>
+                <ng-container *ngIf="!sonTeklif"> Teklif Verilmesi Bekleniyor</ng-container>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex w-100 p-0 pt-2 text-left col-6 float-left">
+        <span class="float-left col-lg-12 p-2 pl-0">
+            Katılım Bedeli: <b>{{ihaleArac.aracDepozit}} ₺</b>
+            <sup>Kdv Dahil</sup>
+        </span>
+    </div>
+    <div *ngIf="user && ihaleArac.ihaleDurum === 4 && user.ruhsatSahibiMi(ihaleArac.aracRuhsatSahibiId)"
+        class="col-6 p-0 m-0 text-right float-right">
+        <button type="button" class="btn btn-success radius-10" *ngIf="!kesinSatis"
+            (click)="kesinSatisaGec(ihaleAracId)">
+            SATIŞA GEÇİR
+        </button>
+    </div>
+    <div class="clearboth"></div>
+    <ng-container *ngIf="ihaleArac.ihaleDurum === 0">
+        <div class="d-flex w-100 mt-3 ml-1 no-gutters">
+            <div class="col-2">
+                <svg-icon src="/assets/special/dashboard.svg"></svg-icon>
+            </div>
+            <div class="col-10">
+                {{ihaleArac.aracSonKm}} Km
+            </div>
+        </div>
+        <div class="d-flex w-100 mt-3 align ml-1 no-gutters">
+            <div class="col-2">
+                <svg-icon src="/assets/special/gasoline-pump.svg"></svg-icon>
+            </div>
+            <div class="col-10">
+                {{ihaleArac.yakitTipiAd}}
+            </div>
+        </div>
+        <div class="d-flex w-100 mt-3 ml-1 no-gutters">
+            <div class="col-2">
+                <svg-icon src="/assets/special/gear-shift.svg"></svg-icon>
+            </div>
+            <div class="col-10">
+                {{ihaleArac.vitesTipiAd}}
+            </div>
+        </div>
+    </ng-container>
+</div>

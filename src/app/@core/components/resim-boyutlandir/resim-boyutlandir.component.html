@@ -1,0 +1,10 @@
+<ng-container *ngFor="let resim of resimler; let i = index;">
+  <image-cropper [resizeToWidth]="800" [cropperMinWidth]="128" [imageFile]="resim" [maintainAspectRatio]="true"
+    [aspectRatio]="4 / 3" format="png" (imageCropped)="imageCropped($event,i)"
+    (imageLoaded)="imageLoaded(i)" (cropperReady)="cropperReady(i)" (loadImageFailed)="loadImageFailed(i)">
+  </image-cropper>
+</ng-container>
+<div>
+  <dx-button stylingMode="contained" text="Contained" type="normal" [width]="120" (onClick)="tamam($event)">
+  </dx-button>
+</div>

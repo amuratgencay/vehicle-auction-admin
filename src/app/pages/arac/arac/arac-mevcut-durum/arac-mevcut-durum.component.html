@@ -1,0 +1,53 @@
+<table class="table table-bordered table-condensed" *ngIf="sonucGeldi">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="2" class="text-center">Çizik</th>
+      <th colspan="2" class="text-center">Hasar</th>
+    </tr>
+    <tr>
+      <th>Parça</th>
+      <th>Küçük</th>
+      <th>Büyük</th>
+      <th>Hafif</th>
+      <th>Ağır</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let parca of parcalar">
+      <td>{{parca.ad}}</td>
+      <td>
+        <!-- <p-inputSwitch [ngModel]="parcayaGoreGetir(parca)?.cizikKucuk"
+          [disabled]="!parcayaGoreGetir(parca)?.cizikKucuk && parcayaGoreGetir(parca)?.cizikBuyuk"
+          (onChange)="durumChange($event, parca,'cizikKucuk')"></p-inputSwitch> -->
+        <dx-switch [disabled]="!parcayaGoreGetir(parca)?.cizikKucuk && parcayaGoreGetir(parca)?.cizikBuyuk"
+          [value]="parcayaGoreGetir(parca)?.cizikKucuk" (valueChange)="durumChange($event, parca,'cizikKucuk')">
+        </dx-switch>
+      </td>
+      <td>
+        <dx-switch [disabled]="!parcayaGoreGetir(parca)?.cizikBuyuk && parcayaGoreGetir(parca)?.cizikKucuk"
+          [value]="parcayaGoreGetir(parca)?.cizikBuyuk" (valueChange)="durumChange($event, parca,'cizikBuyuk')">
+        </dx-switch>
+        <!-- <p-inputSwitch [ngModel]="parcayaGoreGetir(parca)?.cizikBuyuk"
+          [disabled]="!parcayaGoreGetir(parca)?.cizikBuyuk && parcayaGoreGetir(parca)?.cizikKucuk"
+          (onChange)="durumChange($event, parca,'cizikBuyuk')"></p-inputSwitch> -->
+      </td>
+      <td>
+        <dx-switch [disabled]="!parcayaGoreGetir(parca)?.hasarHafif && parcayaGoreGetir(parca)?.hasarAgir"
+          [value]="parcayaGoreGetir(parca)?.hasarHafif" (valueChange)="durumChange($event, parca,'hasarHafif')">
+        </dx-switch>
+        <!-- <p-inputSwitch [ngModel]="parcayaGoreGetir(parca)?.hasarHafif"
+          [disabled]="!parcayaGoreGetir(parca)?.hasarHafif && parcayaGoreGetir(parca)?.hasarAgir"
+          (onChange)="durumChange($event, parca,'hasarHafif')"></p-inputSwitch> -->
+      </td>
+      <td>
+        <dx-switch [disabled]="!parcayaGoreGetir(parca)?.hasarAgir && parcayaGoreGetir(parca)?.hasarHafif"
+          [value]="parcayaGoreGetir(parca)?.hasarAgir" (valueChange)="durumChange($event, parca,'hasarAgir')">
+        </dx-switch>
+        <!-- <p-inputSwitch [ngModel]="parcayaGoreGetir(parca)?.hasarAgir"
+          [disabled]="!parcayaGoreGetir(parca)?.hasarAgir && parcayaGoreGetir(parca)?.hasarHafif"
+          (onChange)="durumChange($event, parca,'hasarAgir')"></p-inputSwitch> -->
+      </td>
+    </tr>
+  </tbody>
+</table>

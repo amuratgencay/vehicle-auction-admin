@@ -1,0 +1,71 @@
+<dx-data-grid id="gridContainer" [dataSource]="dataSource" (onRowUpdating)="onRowUpdating($event)"
+  [allowColumnReordering]="true" [allowColumnResizing]="true" [columnAutoWidth]="true" [allowColumnReordering]="true"
+  [showBorders]="true" [allowColumnResizing]="true">
+  <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+  <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+  <dxo-filter-row [visible]="true"></dxo-filter-row>
+  <dxo-group-panel [visible]="true"></dxo-group-panel>
+  <dxo-grouping [autoExpandAll]="true"></dxo-grouping>
+  <dxo-paging [enabled]="true"></dxo-paging>
+  <dxo-state-storing [enabled]="true" type="localStorage" storageKey="firmaBilgileriGrid"></dxo-state-storing>
+  <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"></dxo-pager>
+  <dxo-editing mode="popup" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true">
+
+  </dxo-editing>
+  <dxo-search-panel [visible]="true" [width]="240" placeholder="Ara"></dxo-search-panel>
+  <dxi-column dataField="kod" caption="Kod" [allowEditing]="false">
+    <dxi-validation-rule type="required"></dxi-validation-rule>
+  </dxi-column>
+  <dxi-column dataField="kategori" [setCellValue]="3" [allowEditing]="false" caption="Kategori">
+    <dxi-validation-rule type="required"></dxi-validation-rule>
+  </dxi-column>
+  <dxi-column dataField="baslik" caption="Başlık">
+    <dxi-validation-rule type="required"></dxi-validation-rule>
+  </dxi-column>
+  <dxi-column dataField="deger" [encodeHtml]="false" caption="Değer" editCellTemplate="editCellTemplate">
+    <dxi-validation-rule type="required"></dxi-validation-rule>
+    <dxo-form-item [colSpan]="2" editorType="dxTextArea" [editorOptions]="{ height: 500 }">
+    </dxo-form-item>
+  </dxi-column>
+  <div *dxTemplate="let cellInfo of 'editCellTemplate'">
+    <dx-html-editor [height]="500" [(value)]="cellInfo.value" (onValueChanged)="setEditedValue($event, cellInfo)">
+      <dxo-toolbar>
+        <dxi-item formatName="undo"></dxi-item>
+        <dxi-item formatName="redo"></dxi-item>
+        <dxi-item formatName="separator"></dxi-item>
+        <dxi-item formatName="size" [formatValues]="['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt']">
+        </dxi-item>
+        <dxi-item formatName="font"
+          [formatValues]="['Arial', 'Courier New', 'Georgia', 'Impact', 'Lucida Console', 'Tahoma', 'Times New Roman', 'Verdana']">
+        </dxi-item>
+        <dxi-item formatName="separator"></dxi-item>
+        <dxi-item formatName="bold"></dxi-item>
+        <dxi-item formatName="italic"></dxi-item>
+        <dxi-item formatName="strike"></dxi-item>
+        <dxi-item formatName="underline"></dxi-item>
+        <dxi-item formatName="separator"></dxi-item>
+        <dxi-item formatName="alignLeft"></dxi-item>
+        <dxi-item formatName="alignCenter"></dxi-item>
+        <dxi-item formatName="alignRight"></dxi-item>
+        <dxi-item formatName="alignJustify"></dxi-item>
+        <dxi-item formatName="separator"></dxi-item>
+        <dxi-item formatName="header" [formatValues]="[false, 1, 2, 3, 4, 5]"></dxi-item>
+        <dxi-item formatName="separator"></dxi-item>
+        <dxi-item formatName="orderedList"></dxi-item>
+        <dxi-item formatName="bulletList"></dxi-item>
+        <dxi-item formatName="separator"></dxi-item>
+        <dxi-item formatName="color"></dxi-item>
+        <dxi-item formatName="background"></dxi-item>
+        <dxi-item formatName="separator"></dxi-item>
+        <dxi-item formatName="link"></dxi-item>
+        <dxi-item formatName="image"></dxi-item>
+        <dxi-item formatName="separator"></dxi-item>
+        <dxi-item formatName="clear"></dxi-item>
+        <dxi-item formatName="codeBlock"></dxi-item>
+        <dxi-item formatName="blockquote"></dxi-item>
+      </dxo-toolbar>
+      <dxo-media-resizing [enabled]=true>
+      </dxo-media-resizing>
+    </dx-html-editor>
+  </div>
+</dx-data-grid>
